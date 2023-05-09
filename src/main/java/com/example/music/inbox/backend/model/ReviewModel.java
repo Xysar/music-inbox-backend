@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlbumModel {
-    private String title;
-    private String artist;
-    private String mbid;
+public class ReviewModel {
+    private String content;
+    private Integer rating;
+
 }

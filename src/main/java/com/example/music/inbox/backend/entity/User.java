@@ -1,28 +1,35 @@
 package com.example.music.inbox.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jdk.jfr.DataAmount;
 import lombok.Data;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Entity
 @Data
+@Entity
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-    @Column(length = 60)
-    private String userName;
-    @Column(length = 60)
-    private String password;
-    private String role;
+    @Column(nullable = false)
+    private String username;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL ,orphanRemoval=true)
-    private Set<Album> albums;
+    @Column(nullable = false, unique=true)
+    private String clerkId;
 
-    private boolean enabled = false;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonManagedReference
+    private List<Review> reviews = new ArrayList<>();
+
+    // Constructors, getters, and setters
+
 }
