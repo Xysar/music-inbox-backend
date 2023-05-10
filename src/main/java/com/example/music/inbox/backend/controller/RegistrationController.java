@@ -17,7 +17,7 @@ import java.sql.Array;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000/","https://music-inbox-nextjs-tsiq.vercel.app' "})
 public class RegistrationController {
 
     @Autowired
