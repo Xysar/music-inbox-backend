@@ -1,6 +1,8 @@
 package com.example.music.inbox.backend.entity;
 
+import com.example.music.inbox.backend.serializer.AlbumSerializer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "albums")
+@JsonSerialize(using = AlbumSerializer.class)
 public class Album {
 
     @Id
@@ -27,8 +30,8 @@ public class Album {
     @Column(nullable = false)
     private String artist;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
+
     private List<Review> reviews = new ArrayList<>();
 
 

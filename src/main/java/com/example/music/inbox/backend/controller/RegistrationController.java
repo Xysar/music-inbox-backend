@@ -129,7 +129,7 @@ public class RegistrationController {
         for(Review e : reviews){
             result.add(e.getAlbum().getMbid());
         }
-        System.out.println(result);
+
         return result;
 
     }

@@ -1,12 +1,17 @@
 package com.example.music.inbox.backend.entity;
 
+import com.example.music.inbox.backend.serializer.ReviewSerializer;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Table(name = "reviews")
 @Data
+@JsonSerialize(using = ReviewSerializer.class)
 public class Review {
 
     @Id
@@ -21,14 +26,10 @@ public class Review {
 
     @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
     private User user;
 
     @JoinColumn(name = "album_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
     private Album album;
-
-    // Constructors, getters, and setters
 
 }
