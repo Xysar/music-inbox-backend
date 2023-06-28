@@ -28,6 +28,7 @@ public class AlbumSerializer extends StdSerializer<Album> {
         jgen.writeStringField("mbid", value.getMbid());
         jgen.writeStringField("title", value.getTitle());
         jgen.writeStringField("artist", value.getArtist());
+        jgen.writeStringField("imageId", value.getImageId());
         jgen.writeArrayFieldStart("reviews");
         for (Review userReview : value.getReviews()) {
             jgen.writeStartObject();
@@ -35,7 +36,8 @@ public class AlbumSerializer extends StdSerializer<Album> {
             jgen.writeStringField("content",userReview.getContent());
             jgen.writeNumberField("rating",userReview.getRating());
             jgen.writeStringField("userName",userReview.getUser().getUsername());
-            jgen.writeStringField("userID",userReview.getUser().getClerkId());
+            jgen.writeStringField("userId",userReview.getUser().getClerkId());
+            jgen.writeStringField("imageId",userReview.getUser().getImageId());
             jgen.writeEndObject();
         }
         jgen.writeEndArray();

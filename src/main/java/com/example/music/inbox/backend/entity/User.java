@@ -28,6 +28,9 @@ public class User {
     @Column(nullable = false, unique=true)
     private String clerkId;
 
+    @Column
+    private String imageId;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 

@@ -11,4 +11,5 @@ public class AlbumModel {
     private String title;
     private String artist;
     private String mbid;
+    private String imageId;
 }

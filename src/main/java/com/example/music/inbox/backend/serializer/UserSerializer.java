@@ -29,6 +29,7 @@ public class UserSerializer extends StdSerializer<User> {
             jgen.writeNumberField("id", value.getId());
             jgen.writeStringField("username", value.getUsername());
             jgen.writeStringField("clerkId", value.getClerkId());
+            jgen.writeStringField("imageId", value.getImageId());
             jgen.writeArrayFieldStart("reviews");
             for (Review userReview : value.getReviews()) {
                 jgen.writeStartObject();
@@ -36,6 +37,7 @@ public class UserSerializer extends StdSerializer<User> {
                 jgen.writeStringField("content",userReview.getContent());
                 jgen.writeNumberField("rating",userReview.getRating());
                 jgen.writeStringField("mbid", userReview.getAlbum().getMbid());
+                jgen.writeStringField("imageId", value.getImageId());
                 jgen.writeStringField("title", userReview.getAlbum().getTitle());
                 jgen.writeStringField("artist", userReview.getAlbum().getArtist());
                 jgen.writeEndObject();

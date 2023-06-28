@@ -30,6 +30,9 @@ public class Album {
     @Column(nullable = false)
     private String artist;
 
+    @Column(nullable = false)
+    private String imageId;
+
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
 
     private List<Review> reviews = new ArrayList<>();

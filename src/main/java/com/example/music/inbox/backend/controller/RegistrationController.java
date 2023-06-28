@@ -32,11 +32,21 @@ public class RegistrationController {
         User newUser = new User();
         newUser.setUsername(userModel.getUsername());
         newUser.setClerkId(userModel.getClerkId());
+        newUser.setImageId(userModel.getImageId());
         try{userRepository.save(newUser);} catch ( Exception e){
             User blankUser = new User();
             return blankUser;
         };
         return newUser;
+    }
+    @PutMapping("/api/update-user")
+    public User updateUser(@RequestBody UserModel userModel){
+        User userToUpdate = userRepository.findByClerkId(userModel.getClerkId());
+        userToUpdate.setUsername(userModel.getUsername());
+        userToUpdate.setClerkId(userModel.getClerkId());
+        userToUpdate.setImageId(userModel.getImageId());
+        userRepository.save(userToUpdate);
+        return userToUpdate;
     }
 
     @PostMapping("/api/create-album")
@@ -45,6 +55,7 @@ public class RegistrationController {
         newAlbum.setTitle(albumModel.getTitle());
         newAlbum.setArtist(albumModel.getArtist());
         newAlbum.setMbid(albumModel.getMbid());
+        newAlbum.setImageId(albumModel.getImageId());
        try{ albumRepository.save(newAlbum);} catch(Exception e){
            Album album = albumRepository.findByMbid(albumModel.getMbid());
            return album;
@@ -89,6 +100,11 @@ public class RegistrationController {
     @GetMapping("/api/get-users")
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("/api/get-albums")
+    public List<Album> getAlbums(){
+        return albumRepository.findAll();
     }
 
     @GetMapping("/api/get-user/{id}")

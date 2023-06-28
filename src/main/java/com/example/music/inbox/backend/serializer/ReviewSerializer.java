@@ -30,6 +30,7 @@ public class ReviewSerializer extends StdSerializer<Review> {
             jgen.writeNumberField("id", value.getAlbum().getId() );
         jgen.writeStringField("title",value.getAlbum().getTitle());
         jgen.writeStringField("artist",value.getAlbum().getArtist());
+        jgen.writeStringField("imageId", value.getAlbum().getImageId());
         jgen.writeStringField("content",value.getAlbum().getMbid());
         jgen.writeEndObject();
 
@@ -38,6 +39,7 @@ public class ReviewSerializer extends StdSerializer<Review> {
         jgen.writeNumberField("id", value.getUser().getId() );
         jgen.writeStringField("clerkId",value.getUser().getClerkId());
         jgen.writeStringField("username",value.getUser().getUsername());
+        jgen.writeStringField("imageId",value.getUser().getImageId());
             jgen.writeEndObject();
 
         jgen.writeEndObject();
